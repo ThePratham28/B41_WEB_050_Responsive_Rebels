@@ -22,7 +22,7 @@ export const fetchStockDataForGraph = async (symbol: string, interval: string, a
   
       return { timestamps, closingPrices };
     } catch (error) {
-      console.error('Error fetching stock data:', error);
+      console.error('Error fetching stock data:', error); 
       throw error;
     }
   };
