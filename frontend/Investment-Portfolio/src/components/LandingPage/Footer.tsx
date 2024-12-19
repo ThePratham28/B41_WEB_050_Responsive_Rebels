@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa'
 import styles from './Footer.module.css' // Import CSS module
-import LOGOIMAGE from '../../assets/Logo-4.png'
+import LOGOIMAGE from '../../assets/LogoFinal.png'
+
 const Footer: React.FC = () => {
   return (
     <footer className={styles.footer}>
@@ -14,7 +15,7 @@ const Footer: React.FC = () => {
             gap: '100px'
           }}
         >
-          <div style={{height: "250px", width: "250px", marginTop: -150, marginLeft: -100}}>
+          <div style={{height: "300px", width: "300px", marginTop: -150, marginLeft: -100}}>
             <img height={"100%"} width={"100%"} style={{objectFit:"contain"}} className='logo' src={LOGOIMAGE} alt='LOGO' />
           </div>
 
@@ -29,16 +30,17 @@ const Footer: React.FC = () => {
               <Link to='/portfolio-tracker' className={styles.link}>
                 Portfolio Tracker
               </Link>
-              <Link to='/dividend-tracker' className={styles.link}>
+              <Link to='/Assests' className={styles.link}>
                 {' '}
-                Dividend Tracker
-              </Link>
-              <Link to='/assests' className={styles.link}>
                 Assests
               </Link>
               <Link to='/stock-forum' className={styles.link}>
                 Stock Forum
               </Link>
+              <Link to='/latest-news' className={styles.link}>
+                Latest News
+              </Link>
+              
             </div>
           </div>
           <div className={styles.links}>

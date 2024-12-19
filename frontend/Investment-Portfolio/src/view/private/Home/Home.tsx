@@ -6,7 +6,7 @@ export default function Home () {
   return (
     <>
       <div
-        style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
+        style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: "black" }}
       >
         <Navbar />
         <div style={{ flex: '1' }}>

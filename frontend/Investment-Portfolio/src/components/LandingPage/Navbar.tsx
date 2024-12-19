@@ -1,18 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.css' 
-import LOGOIMAGE from '../../assets/Logo-4.png'
+import LOGOIMAGE from '../../assets/LogoFinal.png'
 import { Container } from '@chakra-ui/react'
 
 const Navbar: React.FC = () => {
-
-
 
   return (
     <nav className='navbar'>
       <Container>
         <div className='navbar-container'>
-          <div style={{ height: '250px', width: '250px', marginTop: -100 }}>
+          <div style={{ height: '300px', width: '300px', marginTop: -50 }}>
             <img
               height={'100%'}
               width={'100%'}
@@ -34,11 +32,7 @@ const Navbar: React.FC = () => {
                   Portfolio Tracker
                 </Link>
               </li>
-              <li className='nav-item'>
-                <Link to='/dividend-tracker' className='nav-link'>
-                  Dividend Tracker
-                </Link>
-              </li>
+              
               <li className='nav-item'>
                 <Link to='/assests' className='nav-link'>
                   Assests
@@ -47,6 +41,11 @@ const Navbar: React.FC = () => {
               <li className='nav-item'>
                 <Link to='/stock-forum' className='nav-link'>
                   Stock Forum
+                </Link>
+              </li>
+              <li className='nav-item'>
+                <Link to='/latest-news' className='nav-link'>
+                  Latest News
                 </Link>
               </li>
             </ul>
