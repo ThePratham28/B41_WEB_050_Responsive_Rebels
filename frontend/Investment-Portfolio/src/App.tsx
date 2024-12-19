@@ -7,7 +7,7 @@ import RealTimeOverview from './pages/Overview'
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
 
 const App: React.FC = () => {
-  const apiKey = 'WO6U3251BLT0VLEU';
+  const apiKey = 'E833XYO4KYP8UYRI';
   return (
     <BrowserRouter>
       <Routes>
