@@ -60,6 +60,17 @@
     font-size: small;
   }
 
+    
+  .login:hover{
+    color: #abb2b9;
+    border-radius: 2.5px;
+    padding: 5px 10px;
+    background-color: #000;
+    font-weight: bold;
+    font-size: small;
+  }
+
+
   .signup{
     color: black;
     border-radius: 2.5px;
@@ -68,4 +79,13 @@
     font-weight: bold;
     font-size: small;
      /* background-color: black; */
+  }
+
+  .signup:hover{
+    color: black;
+    border-radius: 2.5px;
+    padding: 5px 10px;
+    background-color: #abb2b9;
+    font-weight: bold;
+    font-size: small;
   }

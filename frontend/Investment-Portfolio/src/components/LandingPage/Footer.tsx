@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom'
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa'
 import styles from './Footer.module.css' // Import CSS module
 import LOGOIMAGE from '../../assets/LogoFinal.png'
-
+import { useNavigate } from 'react-router-dom'
 const Footer: React.FC = () => {
+
+  const navigate = useNavigate()
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -15,7 +18,7 @@ const Footer: React.FC = () => {
             gap: '100px'
           }}
         >
-          <div style={{height: "300px", width: "300px", marginTop: -150, marginLeft: -100}}>
+          <div style={{height: "300px", width: "300px", marginTop: -150, marginLeft: -100}} onClick={() => navigate('/')}>
             <img height={"100%"} width={"100%"} style={{objectFit:"contain"}} className='logo' src={LOGOIMAGE} alt='LOGO' />
           </div>
 

@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom'
 import './Navbar.css' 
 import LOGOIMAGE from '../../assets/LogoFinal.png'
 import { Container } from '@chakra-ui/react'
-
+import { useNavigate } from 'react-router-dom'
 const Navbar: React.FC = () => {
+
+  const navigate = useNavigate()
 
   return (
     <nav className='navbar'>
       <Container>
         <div className='navbar-container'>
-          <div style={{ height: '300px', width: '300px', marginTop: -50 }}>
+     <div style={{ height: '300px', width: '300px', marginTop: -50 }} onClick = {() => navigate('/')} >
             <img
               height={'100%'}
               width={'100%'}
@@ -46,6 +48,11 @@ const Navbar: React.FC = () => {
               <li className='nav-item'>
                 <Link to='/latest-news' className='nav-link'>
                   Latest News
+                </Link>
+              </li>
+              <li className='nav-item'>
+                <Link to='/about-us' className='nav-link'>
+                  About Us
                 </Link>
               </li>
             </ul>

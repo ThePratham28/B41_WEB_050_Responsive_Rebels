@@ -5,6 +5,8 @@ import Login from './pages/Login'
 import Home from './view/private/Home/Home'
 import RealTimeOverview from './pages/Overview'
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
+import LatestNews from './pages/LatestNews/latestNews'
+import AboutUs from './pages/AboutUs/AboutUs'
 
 const App: React.FC = () => {
   const apiKey = 'E833XYO4KYP8UYRI';
@@ -18,6 +20,8 @@ const App: React.FC = () => {
         <Route path='/home' element={<Home />} />
         <Route path='/' element={<Home />} />
         <Route path='/*' element={<Login />} />
+        <Route path='/latest-news' element={<LatestNews />} />
+        <Route path='/about-us' element={<AboutUs />} />
       </Routes>
     </BrowserRouter>
   )
