@@ -1,4 +1,4 @@
-import mongoose, { Schema, model } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const userSchema = new Schema(
 	{
@@ -15,8 +15,13 @@ const userSchema = new Schema(
 			type: String,
 			required: true,
 		},
+		portfolio: {
+			type: Schema.Types.ObjectId,
+			ref: "Portfolio",
+			default: null,
+		},
 	},
 	{ timestamps: true },
 );
 
-export const User = mongoose.model("User", userSchema);
+export const User = model("User", userSchema);

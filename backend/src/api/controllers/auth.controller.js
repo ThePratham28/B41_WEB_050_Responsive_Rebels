@@ -1,9 +1,11 @@
 import { User } from "../../models/user.model.js";
 import jwt from "jsonwebtoken";
 import { hash, verify } from "argon2";
-import "dotenv/config.js";
+import dotenv from "dotenv";
 
-const JWT_SECRET = "awsed234@%$erthh";
+dotenv.config();
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 //signup controller
 export const signupUser = async (req, res) => {
@@ -40,13 +42,20 @@ export const loginUser = async (req, res) => {
 
 		const user = await User.findOne({ email });
 
-		if (!user || !(await verify(user.password, password))) {
+		if (!user) {
 			return res.status(400).json({
-				message: "Invalid credentials",
+				message: "Invalid email or password",
 			});
 		}
 
-		const token = jwt.sign({ id: user._id }, JWT_SECRET, {
+		const validPassword = await verify(user.password, password);
+		if (!validPassword) {
+			return res.status(400).json({
+				message: "Invalid email or password",
+			});
+		}
+
+		const token = jwt.sign({ id: user._id, email: user.email }, JWT_SECRET, {
 			expiresIn: "1h",
 		});
 
@@ -56,6 +65,6 @@ export const loginUser = async (req, res) => {
 		});
 	} catch (error) {
 		console.log(`Error occurred in login:`, error.message);
-		res.status(500).json({ message: "Server Error" });
+		res.status(500).json({ message: "Login failed", error });
 	}
 };
