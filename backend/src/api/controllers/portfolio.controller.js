@@ -60,7 +60,7 @@ export const createPortfolio = async (req, res) => {
 
 export const addTransaction = async (req, res) => {
 	try {
-		const { type, symbol, quantity, price } = req.body;
+		const { name, symbol, quantity, price } = req.body;
 
 		const portfolio = await Portfolio.findOne({ user: req.user.id });
 		if (!portfolio) {
@@ -72,7 +72,7 @@ export const addTransaction = async (req, res) => {
 		console.log("retrived portfolio", portfolio);
 
 		const transaction = {
-			type,
+			name,
 			symbol,
 			quantity,
 			price,
@@ -82,7 +82,9 @@ export const addTransaction = async (req, res) => {
 		portfolio.transactions.push(transaction);
 		await portfolio.save().catch((error) => {
 			console.error("Error occurred in addTransaction: ", error.message);
-			res.status(500).json({ message: "Failed to add transaction", error });
+			res
+				.status(500)
+				.json({ message: "Failed to add transaction", error: error.message });
 		});
 
 		res.status(201).json({
@@ -100,7 +102,7 @@ export const addTransaction = async (req, res) => {
 
 export const updateTransaction = async (req, res) => {
 	try {
-		const { type, symbol, quantity, price } = req.body;
+		const { name, symbol, quantity, price } = req.body;
 		const { transactionId } = req.params;
 
 		const portfolio = await Portfolio.findOne({ user: req.user.id });
@@ -117,7 +119,7 @@ export const updateTransaction = async (req, res) => {
 			});
 		}
 
-		transaction.type = type || transaction.type;
+		transaction.name = name || transaction.name;
 		transaction.symbol = symbol || transaction.symbol;
 		transaction.quantity = quantity || transaction.quantity;
 		transaction.price = price || transaction.price;

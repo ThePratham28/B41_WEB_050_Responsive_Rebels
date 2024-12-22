@@ -5,7 +5,6 @@ const transactionSchema = new Schema(
 		name: {
 			type: String,
 			required: true,
-			enum: ["buy", "sell"],
 		},
 		symbol: {
 			type: String,
