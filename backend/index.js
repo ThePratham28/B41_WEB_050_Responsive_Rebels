@@ -4,7 +4,7 @@ import cors from "cors";
 
 import authRouter from "./src/api/routes/auth.routes.js";
 import portfolioRouter from "./src/api/routes/portfolio.routes.js";
-import connection from "./src/config/dbConnection.js";
+import connectDB from "./src/config/dbConnection.js";
 
 dotenv.config();
 
@@ -24,7 +24,7 @@ const PORT = process.env.PORT || 5000;
 //Server start and mongodb connection
 app.listen(PORT, async () => {
 	try {
-		await connection;
+		await connectDB();
 		console.log(`server started on http://localhost:${PORT}`);
 	} catch (err) {
 		console.error(err);

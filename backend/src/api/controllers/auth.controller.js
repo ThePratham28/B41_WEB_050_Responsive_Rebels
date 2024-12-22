@@ -24,10 +24,10 @@ export const signupUser = async (req, res) => {
 
 		const user = await User.create({ name, email, password: hashedpasswd });
 		const token = jwt.sign({ id: user._id }, JWT_SECRET, {
-			expiresIn: "1h",
+			expiresIn: "2h",
 		});
 
-		res.status(201).json({ user, token });
+		res.status(201).json({ token });
 	} catch (error) {
 		console.error("Error occurred in signup: ", error.message);
 		res.status(500).json({
@@ -55,12 +55,11 @@ export const loginUser = async (req, res) => {
 			});
 		}
 
-		const token = jwt.sign({ id: user._id, email: user.email }, JWT_SECRET, {
-			expiresIn: "1h",
+		const token = jwt.sign({ id: user._id }, JWT_SECRET, {
+			expiresIn: "2h",
 		});
 
 		res.json({
-			user,
 			token,
 		});
 	} catch (error) {

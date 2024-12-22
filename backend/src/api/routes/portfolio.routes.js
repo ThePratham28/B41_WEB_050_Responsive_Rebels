@@ -5,23 +5,25 @@ import {
 	addTransaction,
 	updateTransaction,
 	deleteTransaction,
+	getPortfolio,
 } from "../controllers/portfolio.controller.js";
 
 import { authMiddleware } from "../middleware/auth.middleware.js";
 
 const portfolioRouter = Router();
 
-portfolioRouter.post("/", authMiddleware, createPortfolio); // Create portfolio
-portfolioRouter.post("/transaction", authMiddleware, addTransaction); // Add transaction
+portfolioRouter.get("/", authMiddleware, getPortfolio);
+portfolioRouter.post("/", authMiddleware, createPortfolio);
+portfolioRouter.post("/transaction", authMiddleware, addTransaction);
 portfolioRouter.put(
 	"/transaction/:transactionId",
 	authMiddleware,
 	updateTransaction,
-); // Update transaction
+);
 portfolioRouter.delete(
 	"/transaction/:transactionId",
 	authMiddleware,
 	deleteTransaction,
-); // Delete transaction
+);
 
 export default portfolioRouter;

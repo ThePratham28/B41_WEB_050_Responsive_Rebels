@@ -1,6 +1,28 @@
 import { Portfolio } from "../../models/portfolio.model.js";
 import { User } from "../../models/user.model.js";
 
+export const getPortfolio = async (req, res) => {
+	try {
+		const portfolio = await Portfolio.findOne({ user: req.user.id });
+		if (!portfolio) {
+			return res.status(404).json({
+				message: "Portfolio not found",
+			});
+		}
+
+		res.json({
+			message: "Portfolio retrieved successfully",
+			portfolio,
+		});
+	} catch (error) {
+		console.error("Error occurred in getPortfolio: ", error.message);
+		res.status(500).json({
+			message: "Failed to retrieve portfolio",
+			error: error.message,
+		});
+	}
+};
+
 export const createPortfolio = async (req, res) => {
 	try {
 		const user = await User.findById(req.user.id);
@@ -47,14 +69,21 @@ export const addTransaction = async (req, res) => {
 			});
 		}
 
+		console.log("retrived portfolio", portfolio);
+
 		const transaction = {
 			type,
 			symbol,
 			quantity,
 			price,
 		};
+
+		console.log("transaction to add", transaction);
 		portfolio.transactions.push(transaction);
-		await portfolio.save();
+		await portfolio.save().catch((error) => {
+			console.error("Error occurred in addTransaction: ", error.message);
+			res.status(500).json({ message: "Failed to add transaction", error });
+		});
 
 		res.status(201).json({
 			message: "Transaction added successfully",
@@ -111,7 +140,7 @@ export const deleteTransaction = async (req, res) => {
 	try {
 		const { transactionId } = req.params;
 
-		const portfolio = await Portfolio.findOne({ user: req.user._id });
+		const portfolio = await Portfolio.findOne({ user: req.user.id });
 		if (!portfolio) {
 			return res.status(404).json({
 				message: "Portfolio not found",
