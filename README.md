@@ -18,6 +18,7 @@ Database: https://deployed-site.whatever
 
 ## Directory Structure
 
+```
 my-portfolio-tracker/
 ├── backend/
 │   ├── src/
@@ -27,12 +28,13 @@ my-portfolio-tracker/
 │   │   │   └── middleware/
 │   │   ├── models/
 │   │   ├── config/
-│   │   └── app.js
-|   |── index.js
+|   ├── index.js
 │   ├── .env
 │   ├── package.json
 │   └── README.md
 ├── frontend/
+|
+```
 
 ## Video Walkthrough of the project
 
