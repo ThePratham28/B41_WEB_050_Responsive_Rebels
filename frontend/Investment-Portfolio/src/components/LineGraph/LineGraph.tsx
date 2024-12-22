@@ -13,12 +13,7 @@ import {
 // Define types for the data structure
 
 interface LineGraphProps {
-  assetData: {
-    name: string;
-    symbol: string;
-    quantity: number;
-    price: number;
-  }[];
+  symbol: string;
 }
 
 interface HoveredData {
@@ -70,7 +65,7 @@ const CustomTooltip = ({ active, payload, label }: TooltipProps<any, any>) => {
   return null;
 };
 
-const LineGraph: React.FC<LineGraphProps> = ({ assetData }) => {
+const LineGraph: React.FC<LineGraphProps> = ({ symbol }) => {
   const [min, setMin] = useState<number | null>(null);
   const [max, setMax] = useState<number | null>(null);
   const [chartData, setChartData] = useState<any[]>([]);
@@ -80,7 +75,7 @@ const LineGraph: React.FC<LineGraphProps> = ({ assetData }) => {
   });
   const [stockName, setStockName] = useState("");
 
-  const fetchData = async (symbol: string) => {
+  const fetchData = async () => {
     const response = await axios.get(
       `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=1min&outputsize=compactl&apikey=9011XOFI0GXBU650`
     );
@@ -129,9 +124,8 @@ const LineGraph: React.FC<LineGraphProps> = ({ assetData }) => {
   };
 
   useEffect(() => {
-    const symbol = assetData[0].symbol;
-    fetchData(symbol);
-  }, []);
+    fetchData();
+  }, [symbol]);
 
   return (
     <div

@@ -16,9 +16,10 @@ interface AssetListProp {
     quantity: number;
     price: number;
   }[];
+  setSymbol: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const AssetList: React.FC<AssetListProp> = ({ data }: { data: any[] }) => {
+const AssetList: React.FC<AssetListProp> = ({ data, setSymbol }) => {
   return (
     <Box
       sx={{
@@ -59,13 +60,18 @@ const AssetList: React.FC<AssetListProp> = ({ data }: { data: any[] }) => {
                 {" "}
                 {/* Dark card background */}
                 <CardContent>
-                  <Typography
-                    variant="h6"
-                    component="div"
-                    sx={{ color: "#fff" }}
+                  <div
+                    style={{ cursor: "pointer" }}
+                    onClick={(e) => setSymbol(asset.symbol)}
                   >
-                    {asset.name}
-                  </Typography>
+                    <Typography
+                      variant="h6"
+                      component="div"
+                      sx={{ color: "#fff" }}
+                    >
+                      {asset.name}
+                    </Typography>
+                  </div>
                   <Divider sx={{ my: 1, backgroundColor: "#555" }} />
                   <Box display="flex" justifyContent="space-between" mt={1}>
                     <Typography variant="body1" color="#eee">

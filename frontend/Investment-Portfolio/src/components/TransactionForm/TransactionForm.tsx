@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { axiosInstance } from "../../utils/axios.js";
 import {
   Box,
   Button,
@@ -105,13 +106,14 @@ const TransactionForm: React.FC<ITransactionForm> = ({
     e.preventDefault();
 
     // -----------------API--------------------
-    // const res = await axios.post("mongoDb url", {
-    //   symbol: formData.security,
-    //   name: formData.name,
-    //   quantity: formData.quantity,
-    //   price: formData.totalAmount,
-    // });
-    // setData([...data, res])
+    const res = await axiosInstance.post("/portfolio/transaction", {
+      symbol: formData.security,
+      name: formData.name,
+      quantity: formData.quantity,
+      price: formData.totalAmount,
+    });
+
+    setData([...data, res.data.transaction]);
 
     setFormData({ security: "", quantity: "", name: "", totalAmount: 0 });
   };
