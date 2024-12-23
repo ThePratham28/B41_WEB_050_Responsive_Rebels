@@ -77,7 +77,7 @@ const LineGraph: React.FC<LineGraphProps> = ({ symbol }) => {
 
   const fetchData = async () => {
     const response = await axios.get(
-      `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=1min&outputsize=compactl&apikey=9011XOFI0GXBU650`
+      `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=1min&outputsize=compactl&apikey=Q4RTLEAXSE12KIAB`
     );
     const res = response?.data;
     const xaxis = Object.keys(res["Time Series (1min)"]);
